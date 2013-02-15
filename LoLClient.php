@@ -17,15 +17,17 @@ class LoLClient
         KLogger::instance(false, LoLConfig::LOGLEVEL)->logInfo("LoLClient startup");
         $this->config = new LoLConfig($region);
         $l = new LoLAuth($this->config, $username, $password);
+        $auth = array();
         try{
             $auth = $l->login();
         }
         catch(LoginException $e){
             print $e->getMessage() . PHP_EOL;
+            die();
         }
         KLogger::instance(false, LoLConfig::LOGLEVEL)->logInfo("LoLClient login part 1 finished");
         
-        $this->rtmp = new LoLRPC();
+        $this->rtmp = new LoLRPC($this->config->getClientVersion());
         if($this->rtmp->connect("rtmps", $this->config->getRPCUrl(),2099, "", "app:/mod_ser.dat")){
             $this->rtmp->login($username, $password, $auth[1]);
         }

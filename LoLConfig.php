@@ -5,6 +5,7 @@ require_once 'Logging/KLogger.php';
 class LoLConfig
 {
     const LOGLEVEL = KLogger::INFO;
+    private $clientVersion = "ClientVersion1.0";
     private $region;
     private $regions = array('EUW', 'EUNE', 'NA', 'BR');
     private $login_queue_host = array('EUW' => 'lq.eu.lol.riotgames.com',
@@ -26,6 +27,11 @@ class LoLConfig
         else{
             throw new LoLConfigException("No such region: {$region}");
         }
+    }
+    
+    public function getClientVersion()
+    {
+        return $this->clientVersion;
     }
 
     public function getLoginUrl(){

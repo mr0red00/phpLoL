@@ -1,0 +1,3 @@
+2013-02-15 23:16:35 - INFO --> LoLClient startup
+2013-02-15 23:16:36 - INFO --> LoLClient login part 1 finished
+2013-02-15 23:17:47 - INFO --> LoLClient startup
