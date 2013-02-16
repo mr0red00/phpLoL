@@ -33,4 +33,16 @@ class LoLClient
         }
         KLogger::instance(false, LoLConfig::LOGLEVEL)->logInfo("LoLClient logged in");
     }
+
+    public function __call($name, $arguments)
+    {
+        if(count($arguments) == 0){
+            $arguments = $arguments[0];
+        }
+        if(method_exists($this->rtmp, $name)){
+            $result = $this->rtmp->$name($arguments);
+            return $result;
+        }
+        return false;
+    }
 }

@@ -418,12 +418,7 @@ class RTMPClient
             $serializer3->writeAMFData($cm);
 
             $res = $this->addHeader($stream->getRawData());
-            //$data = file_get_contents("/tmp/blajava");
             $this->send($res);
-            var_dump("INVOKE");
-
-            //$this->read(1);
-            //$this->read(1);
 
             $response = $this->readResponse(1);
 

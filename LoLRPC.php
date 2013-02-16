@@ -85,7 +85,52 @@ class LoLRPC extends RtmpClient
         $result = $this->invoke("loginService", "logout", array($this->token));
         print_r($result);
     }
+
+
+    //SummonerService
+    public function getSummonerByName($name)
+    {
+        $result = $this->invoke("summonerService", "getSummonerByName", $name);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
+
+    public function getAllPublicSummonerDataByAccount($id)
+    {
+        $result = $this->invoke("summonerService", "getAllPublicSummonerDataByAccount", $id);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
+
+    public function getSummonerNames($ids)
+    {
+        $result = $this->invoke("summonerService", "getSummonerNames", $ids);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
     
+    //PlayerStatsService
+    public function getRecentGames($accountId)
+    {
+        $result = $this->invoke("playerStatsService", "getRecentGames", $accountId);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
+
+    public function getPlayerStatsByAccountId($accountId)
+    {
+        $result = $this->invoke("playerStatsService", "retrievePlayerStatsByAccountId", $accountId);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
+
+    public function getAggregatedStats($accountId)
+    {
+        $result = $this->invoke("playerStatsService", "getAggregatedStats", $accountId);
+        $result = $result['data']->getData()['body']->getAMFData();
+        return $result;
+    }
+
     /*
     private function heartbeat()
     {
@@ -93,18 +138,6 @@ class LoLRPC extends RtmpClient
          print_r($result);
     }
      */
-    
-    public function getSummonerByName($name)
-    {
-        $result = $this->invoke("summonerService", "getSummonerByName", $name);
-        return $result;
-    }
-    
-    public function getRecentGames($accountId)
-    {
-        $result = $this->invoke("playerStatsService", "getRecentGames", $accountId);
-        return $result;
-    }
 }
 
 
