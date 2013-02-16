@@ -8,4 +8,5 @@ I just wanted to do something in php and studied the lolrtmpsclient to get this 
 Example usage:
 
 $client = new LoLClient('Username', 'password');
-var_dump($client->getSummonerByName("SummonerName");
+
+var_dump($client->getSummonerByName("SummonerName"));
