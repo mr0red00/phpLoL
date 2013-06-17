@@ -51,8 +51,10 @@ class LoLRPC extends RtmpClient
         
         $data = $result['data']->getData();
         $body = $data['body'];
-        $this->token = $body->getAMFData()['token'];
-        $accountSummary = $body->getAMFData()['accountSummary']->getAMFData();
+        $this->token = $body->getAMFData();
+        $this->token = $this->token['token'];
+        $accountSummary = $body->getAMFData();
+        $accountSummary = $accountSummary['accountSummary']->getAMFData();
         $this->accountId = $accountSummary['accountId'];
 
         $body = strtolower($username) . ":" . $this->token;
@@ -91,21 +93,24 @@ class LoLRPC extends RtmpClient
     public function getSummonerByName($name)
     {
         $result = $this->invoke("summonerService", "getSummonerByName", $name);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
 
     public function getAllPublicSummonerDataByAccount($id)
     {
         $result = $this->invoke("summonerService", "getAllPublicSummonerDataByAccount", $id);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
 
     public function getSummonerNames($ids)
     {
         $result = $this->invoke("summonerService", "getSummonerNames", $ids);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
     
@@ -113,21 +118,24 @@ class LoLRPC extends RtmpClient
     public function getRecentGames($accountId)
     {
         $result = $this->invoke("playerStatsService", "getRecentGames", $accountId);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
 
     public function getPlayerStatsByAccountId($accountId)
     {
         $result = $this->invoke("playerStatsService", "retrievePlayerStatsByAccountId", $accountId);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
 
     public function getAggregatedStats($accountId)
     {
         $result = $this->invoke("playerStatsService", "getAggregatedStats", $accountId);
-        $result = $result['data']->getData()['body']->getAMFData();
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
         return $result;
     }
 

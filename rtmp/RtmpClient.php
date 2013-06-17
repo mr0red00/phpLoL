@@ -75,7 +75,8 @@ class RTMPClient
             $this->send($c1_string);
 
             //S0
-            $version = unpack("C", $this->read(1))[1];
+            $version = unpack("C", $this->read(1));
+            $version = $version[1];
 
             if($version != 3){
                 die("ERROR");
