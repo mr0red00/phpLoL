@@ -19,7 +19,7 @@ class LoLRPC extends RtmpClient
             $this->clientVersion = $clientVersion;
         }
     }
-    public function login($username, $password, $credentials)
+    public function login($username, $password, $credentials, $partner = null)
     {
         //Get Ip
         $ip = '127.0.0.1';
@@ -32,7 +32,7 @@ class LoLRPC extends RtmpClient
 
         $data = array('operatingSystem' => 'LoLRTMPSClient',
                       'username' => $username,
-                      'partnerCredentials' => null,
+                      'partnerCredentials' => $partner,
                       'locale' => 'en_US',
                       'domain' => 'lolclient.lol.riotgames.com',
                       'authToken' => $credentials,
@@ -110,7 +110,8 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("summonerService", "getSummonerNames", $ids);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $summonerNames = array();
+        $result = (array) $result['body']->getIterator();
         return $result;
     }
     
