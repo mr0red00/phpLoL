@@ -23,6 +23,9 @@ class LoLAuth
 
     public function login()
     {
+        if(!ini_get('allow_url_fopen')) {
+            throw new LoginException("php.ini: allow_url_fopen not enabled");
+        }
         KLogger::instance(false, LoLConfig::LOGLEVEL)->logDebug("LoLAuth login...");
         $data  = "payload=" . urlencode("user={$this->username},password={$this->password}");
         $opts = array(
