@@ -17,9 +17,9 @@ var_dump($client->getSummonerByName("SummonerName"));
 
 Available functions:
 
-*getSummonerByName($name)
-*getAllPublicSummonerDataByAccount($id)
-*getSummonerNames($ids)
-*getRecentGames($accountId)
-*getPlayerStatsByAccountId($accountId)
-*getAggregatedStats($accountId)
+* getSummonerByName($name)
+* getAllPublicSummonerDataByAccount($id)
+* getSummonerNames($ids)
+* getRecentGames($accountId)
+* getPlayerStatsByAccountId($accountId)
+* getAggregatedStats($accountId)
