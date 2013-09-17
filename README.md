@@ -6,7 +6,7 @@ I just wanted to do something in php and studied the lolrtmpsclient to get this 
 
 -----------------------------------------------------
 
-*To get started change the $clientVersion according to the current current patch version (Its located in the upper left corner in the client)*
+**To get started change the $clientVersion according to the current current patch version (Its located in the upper left corner in the client)**
 
 Example usage:
 
