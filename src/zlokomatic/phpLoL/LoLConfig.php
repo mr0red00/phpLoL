@@ -1,11 +1,10 @@
 <?php
 
-require_once 'Logging/KLogger.php';
+namespace zlokomatic\phpLoL;
 
 class LoLConfig
 {
-    const LOGLEVEL = KLogger::INFO;
-    private $clientVersion = "ClientVersion1.0";
+    private $clientVersion = "3.11.13_09_13_11_54";
     private $region;
     private $regions = array('EUW', 'EUNE', 'NA', 'BR');
     private $login_queue_host = array('EUW' => 'lq.eu.lol.riotgames.com',

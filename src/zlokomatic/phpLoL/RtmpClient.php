@@ -1,18 +1,10 @@
 <?php
 
-$inc_path = get_include_path();
-$inc_path .= PATH_SEPARATOR . "./rtmp" . PATH_SEPARATOR . "./SabreAMF";
-set_include_path($inc_path);
+namespace zlokomatic\phpLoL;
 
-require_once 'rtmp/SabreAMF/OutputStream.php';
-require_once 'rtmp/SabreAMF/InputStream.php';
-require_once 'rtmp/SabreAMF/AMF0/Serializer.php';
-require_once 'rtmp/SabreAMF/AMF0/Deserializer.php';
-require_once 'rtmp/SabreAMF/TypedObject.php';
-
-class ConnectionErrorException extends Exception {}
-class HandshakeErrorException extends Exception {}
-class ProtocoleErrorException extends Exception {}
+class ConnectionErrorException extends \Exception {}
+class HandshakeErrorException extends \Exception {}
+class ProtocoleErrorException extends \Exception {}
 
 class RTMPClient
 {
@@ -124,9 +116,9 @@ class RTMPClient
                                );
 
 
-        $stream = new SabreAMF_OutputStream();
-        $serializer = new SabreAMF_AMF0_Serializer($stream);
-        $serializer3 = new SabreAMF_AMF3_Serializer($stream);
+        $stream = new \SabreAMF_OutputStream();
+        $serializer = new \SabreAMF_AMF0_Serializer($stream);
+        $serializer3 = new \SabreAMF_AMF3_Serializer($stream);
 
         $serializer->writeAMFData("connect");
         $serializer->writeAMFData($this->invokeId++);
@@ -145,17 +137,17 @@ class RTMPClient
         $stream->writeByte(0x01);
         $stream->writeByte(0x00);
         $serializer->writeAMFData('nil');
-        $serializer->writeAMFData('', SabreAMF_AMF0_Const::DT_STRING);
+        $serializer->writeAMFData('', \SabreAMF_AMF0_Const::DT_STRING);
 
         
-        $cmdmsg = new SabreAMF_AMF3_CommandMessage();
+        $cmdmsg = new \SabreAMF_AMF3_CommandMessage();
 
         $headers = array('DSMessagingVersion' => 1.0,
                          'DSId' => 'my-rtmps');
 
         $data = array('headers' => $headers,
                       'timestamp' => 0.0,
-                      'body' => new SabreAMF_TypedObject("",array()),
+                      'body' => new \SabreAMF_TypedObject("",array()),
                       'operation' => 5,
                       'messageRefType' => null,
                       'correlationId' => '',
@@ -167,7 +159,7 @@ class RTMPClient
 
 
 
-        $cm = new SabreAMF_TypedObject("flex.messaging.messages.CommandMessage", $data);
+        $cm = new \SabreAMF_TypedObject("flex.messaging.messages.CommandMessage", $data);
         $stream->writeByte(0x11);
         $serializer3->writeAMFData($cm);
 
@@ -305,14 +297,14 @@ class RTMPClient
             elseif($packet['type'] == 0x11){
                     $result = array();
 
-                    $stream = new SabreAMF_InputStream($packet['data']);
+                    $stream = new \SabreAMF_InputStream($packet['data']);
 
                      if($stream->readByte() == 0x00){
                         $result['version'] = 0x00;
                         $packet['data'] = substr($packet['data'] ,1 , strlen($packet['data']));
                     }
 
-                    $deserializer = new SabreAMF_AMF0_Deserializer($stream);
+                    $deserializer = new \SabreAMF_AMF0_Deserializer($stream);
                     $result['result'] = $deserializer->readAMFData();
                     $result['invokeId'] = $deserializer->readAMFData();
                     $result['serviceCall'] = $deserializer->readAMFData();
@@ -320,8 +312,8 @@ class RTMPClient
             }
             elseif($packet['type'] == 0x14){
                     $result = array();
-                    $stream = new SabreAMF_InputStream($packet['data']);
-                    $deserializer = new SabreAMF_AMF0_Deserializer($stream);
+                    $stream = new \SabreAMF_InputStream($packet['data']);
+                    $deserializer = new \SabreAMF_AMF0_Deserializer($stream);
                     $result['result'] = $deserializer->readAMFData();
                     $result['invokeId'] = $deserializer->readAMFData();
                     $result['serviceCall'] = $deserializer->readAMFData();
@@ -374,7 +366,7 @@ class RTMPClient
             }
             
             
-            $cmdmsg = new SabreAMF_AMF3_RemotingMessage();
+            $cmdmsg = new \SabreAMF_AMF3_RemotingMessage();
 
             $headers = array('DSRequestTimeout' => 60,
                              'DSId' => $this->dsId,
@@ -385,7 +377,7 @@ class RTMPClient
                 $headers[$k] = $v;
             }
                    
-            $headers_cm = new SabreAMF_TypedObject(null, $headers);
+            $headers_cm = new \SabreAMF_TypedObject(null, $headers);
             $data = array('headers' => $headers_cm,
                           'timestamp' => 0,
                           'body' => $body,
@@ -401,16 +393,16 @@ class RTMPClient
                 $data[$k] = $v;
             }
             
-            $cm = new SabreAMF_TypedObject($type, $data);
+            $cm = new \SabreAMF_TypedObject($type, $data);
         }
         else{
             $cm = func_get_arg(0);
         }
 
         if($cm != null){
-            $stream = new SabreAMF_OutputStream();
-            $serializer = new SabreAMF_AMF0_Serializer($stream);
-            $serializer3 = new SabreAMF_AMF3_Serializer($stream);
+            $stream = new \SabreAMF_OutputStream();
+            $serializer = new \SabreAMF_AMF0_Serializer($stream);
+            $serializer3 = new \SabreAMF_AMF3_Serializer($stream);
             $stream->writeByte(0x00);
             $stream->writeByte(0x05);
             $serializer->writeAMFData($this->invokeId++);
@@ -434,14 +426,3 @@ class RTMPClient
     }
 
 }
-
-/*
-//$rtmp->connect("rtmp", "192.168.2.32", "2099", "" , "app:/mod_ser.dat");
-//$rtmp->connect("rtmp", "192.168.2.32", "1935", "", "app:/mod_ser.dat");
-*/
-/*
-$rtmp = new RtmpClient;
-$rtmp->connect("rtmps", "prod.eu.lol.riotgames.com", "2099", "" , "app:/mod_ser.dat");
-$rtmp->doConnect();
-*/
-

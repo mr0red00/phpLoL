@@ -1,10 +1,6 @@
 <?php
 
-$inc_path = get_include_path();
-$inc_path .= PATH_SEPARATOR . "./rtmp" . PATH_SEPARATOR . "./rtmp/SabreAMF";
-set_include_path($inc_path);
-
-require_once 'rtmp/RtmpClient.php';
+namespace zlokomatic\phpLoL;
 
 class LoLRPC extends RtmpClient
 {
@@ -45,7 +41,7 @@ class LoLRPC extends RtmpClient
 
 
 
-        $body = new SabreAMF_TypedObject("com.riotgames.platform.login.AuthenticationCredentials", $data);
+        $body = new \SabreAMF_TypedObject("com.riotgames.platform.login.AuthenticationCredentials", $data);
 
         $result = $this->invoke('loginService', 'login', array($body));
         
@@ -65,17 +61,17 @@ class LoLRPC extends RtmpClient
         $headers = array('DSSubtopic' => 'bc');
         $body = array('clientId' => 'bc-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'cn-' . $this->accountId);
         $body = array('clientId' => 'cn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'gn-' . $this->accountId);
         $body = array('clientId' => 'gn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
         
         
         $this->loggedIn = true;
@@ -143,7 +139,7 @@ class LoLRPC extends RtmpClient
     /*
     private function heartbeat()
     {
-         $result = $this->invoke('loginService', 'performLCDSHeartBeat', new SabreAMF_TypedObject("", array($this->accountId, $this->token, 1, (date("0d M d Y H:i:s ") . "GTMZ"))));   
+         $result = $this->invoke('loginService', 'performLCDSHeartBeat', new \SabreAMF_TypedObject("", array($this->accountId, $this->token, 1, (date("0d M d Y H:i:s ") . "GTMZ"))));   
          print_r($result);
     }
      */
