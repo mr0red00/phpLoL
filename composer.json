@@ -1,0 +1,26 @@
+{
+   "name": "zlokomatic/phplol",
+   "description": "LoL statistics client",
+   "keywords": ["lol", "league of legends"],
+   "authors": [
+       {
+           "name": "zlokomatic",
+           "email": "zlokomatic@gmail.com"
+       }
+    ],
+    "repositories": [
+       {
+         "type": "vcs",
+         "url": "https://github.com/zlokomatic/SabreAMF"
+       }
+    ],
+    "require": {
+        "sabre/amf": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "zlokomatic\\phpLoL": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
