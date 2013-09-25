@@ -30,7 +30,8 @@ Installation
         ],
         "require": {
             "zlokomatic/phpLoL": "*"
-        }
+        },
+        "minimum-stability": "dev"
     }
     ```
 2. composer install
