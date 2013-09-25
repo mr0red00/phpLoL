@@ -1,25 +1,70 @@
-This is a very basic php client for League of Legends
+phpLoL
+========================
+phpLoL is a library to access League of Legends statistics via php
 
-=====================================================
+Requirements
+------------------------
+* [composer](https://github.com/composer/composer)
 
-I just wanted to do something in php and studied the lolrtmpsclient to get this working, so big props to this project. Also i had to modify the excellent SabreAMF lib which is also in this Repo.
+Installation
+------------------------
 
------------------------------------------------------
+###Standalone use:
+1. `git clone https://github.com/zlokomatic/phpLoL.git`
+2. composer install 
 
-**To get started change the $clientVersion in LoLConfig.php according to the current current patch version (Its located in the upper left corner in the client)**
+###As dependency:
+1. create a composer.json and define this dependencies.
 
-Example usage:
+    ```json
+    {
+        "repositories": [
+            {
+                "type": "git",
+                "url": "https://github.com/zlokomatic/phpLoL.git"
+            },
+            {
+                "type": "git",
+                "url": "https://github.com/zlokomatic/SabreAMF.git"
+            }
+        ],
+        "require": {
+            "zlokomatic/phpLoL": "*"
+        }
+    }
+    ```
+2. composer install
 
-$client = new LoLClient('Username', 'password');
 
-var_dump($client->getSummonerByName("SummonerName"));
+Getting started
+------------------------
 
+### LoLConfig.php
+change
 
-Available functions:
+        private $clientVersion = ""
+    
+to current client Version (e.g. 3.11.13_09_13_11_54)
+ 
+
+### Functions
+Avaiable functions are:
 
 * getSummonerByName($name)
-* getAllPublicSummonerDataByAccount($id)
-* getSummonerNames($ids)
+* getAllPublicSummonerDataByAccount($accountid)
+* getSummonerNames(array $accountIds)
 * getRecentGames($accountId)
 * getPlayerStatsByAccountId($accountId)
 * getAggregatedStats($accountId)
+* getAllLeaguesForPlayer($summonerId)
+ 
+ News
+------------------------
+
+   1. Made project composer compliant
+
+
+Credit
+------------------------
+* lolrtmpsclient
+* SabreAMF

@@ -94,17 +94,17 @@ class LoLRPC extends RtmpClient
         return $result;
     }
 
-    public function getAllPublicSummonerDataByAccount($id)
+    public function getAllPublicSummonerDataByAccount($accountId)
     {
-        $result = $this->invoke("summonerService", "getAllPublicSummonerDataByAccount", $id);
+        $result = $this->invoke("summonerService", "getAllPublicSummonerDataByAccount", $accountId);
         $result = $result['data']->getData();
         $result = $result['body']->getAMFData();
         return $result;
     }
 
-    public function getSummonerNames($ids)
+    public function getSummonerNames(array $accountIds)
     {
-        $result = $this->invoke("summonerService", "getSummonerNames", $ids);
+        $result = $this->invoke("summonerService", "getSummonerNames", $accountIds);
         $result = $result['data']->getData();
         $summonerNames = array();
         $result = (array) $result['body']->getIterator();
@@ -131,6 +131,14 @@ class LoLRPC extends RtmpClient
     public function getAggregatedStats($accountId)
     {
         $result = $this->invoke("playerStatsService", "getAggregatedStats", $accountId);
+        $result = $result['data']->getData();
+        $result = $result['body']->getAMFData();
+        return $result;
+    }
+
+    public function getAllLeaguesForPlayer($summonerId)
+    {
+        $result = $this->invoke("leaguesServiceProxy", "getAllLeaguesForPlayer", $summonerId);
         $result = $result['data']->getData();
         $result = $result['body']->getAMFData();
         return $result;
