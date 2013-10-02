@@ -61,17 +61,17 @@ class LoLRPC extends RtmpClient
         $headers = array('DSSubtopic' => 'bc');
         $body = array('clientId' => 'bc-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'cn-' . $this->accountId);
         $body = array('clientId' => 'cn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'gn-' . $this->accountId);
         $body = array('clientId' => 'gn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         
         $this->loggedIn = true;
