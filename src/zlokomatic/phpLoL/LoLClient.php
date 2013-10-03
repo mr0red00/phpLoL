@@ -26,6 +26,7 @@ class LoLClient
             $arguments = $arguments[0];
         }
         if(method_exists($this->rtmp, $name)){
+            //$result = call_user_func_array(array($this->rtmp, $name), $arguments);
             $result = $this->rtmp->$name($arguments);
             return $result;
         }

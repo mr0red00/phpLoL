@@ -71,7 +71,7 @@ class RTMPClient
             $version = $version[1];
 
             if($version != 3){
-                die("ERROR");
+                throw new \Exception("RTMP version error");
             }
 
             //S1
@@ -147,21 +147,21 @@ class RTMPClient
 
         $data = array('headers' => $headers,
                       'timestamp' => 0.0,
-                      'body' => new \SabreAMF_TypedObject("",array()),
+                      'body' => null, //new \SabreAMF_TypedObject("",array()),
                       'operation' => 5,
                       'messageRefType' => null,
                       'correlationId' => '',
                       'messageId' => $cmdmsg->generateRandomId(),
                       'timeToLive' => 0.0,
                       'clientId' => null,
-                      'destination' => '',
+                      'destination' => null,
                       );
 
 
 
         $cm = new \SabreAMF_TypedObject("flex.messaging.messages.CommandMessage", $data);
         $stream->writeByte(0x11);
-        $serializer3->writeAMFData($cm);
+        @$serializer3->writeAMFData($cm);
 
         $res = $this->addHeader($stream->getRawData());
         $res[7] = chr(0x14);
@@ -324,7 +324,7 @@ class RTMPClient
             }
 
             if(!isset($result)){
-                die("SOMETHING WENT WRONG AFTER DECODING PACKET\n");
+                throw new \Exception("Error after decoding packet");
             }
             $id = $result['invokeId'];
 
@@ -417,7 +417,9 @@ class RTMPClient
 
             if($response['result'] == '_error'){
                 $data = $response['data']->getData();
-                throw new Exception($data->faultString);
+                var_dump($data);
+                die();
+                throw new \Exception($data->faultString);
             }
             
             return $response;

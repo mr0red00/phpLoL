@@ -14,6 +14,43 @@ class LoLRPC extends RtmpClient
         if($clientVersion != null){
             $this->clientVersion = $clientVersion;
         }
+
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.PublicSummoner', '\zlokomatic\phpLoL\amf\summoner\Summoner');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.AllPublicSummonerDataDTO', '\zlokomatic\phpLoL\amf\summoner\SummonerData');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.SummonerGameModeSpells', '\zlokomatic\phpLoL\amf\summoner\GameModeSpells');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.spellbook.SpellBookDTO', '\zlokomatic\phpLoL\amf\summoner\spellbook\SpellBook');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.spellbook.SpellBookPageDTO', '\zlokomatic\phpLoL\amf\summoner\spellbook\SpellBookPage');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.spellbook.SlotEntry', '\zlokomatic\phpLoL\amf\summoner\spellbook\SpellBookSlotEntry');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.RuneSlot', '\zlokomatic\phpLoL\amf\summoner\RuneSlot');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.catalog.runes.RuneType', '\zlokomatic\phpLoL\amf\catalog\runes\RuneType');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.catalog.runes.Rune', '\zlokomatic\phpLoL\amf\catalog\runes\Rune');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.catalog.ItemEffect', '\zlokomatic\phpLoL\amf\catalog\ItemEffect');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.catalog.Effect', '\zlokomatic\phpLoL\amf\catalog\Effect');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.SummonerDefaultSpells', '\zlokomatic\phpLoL\amf\summoner\SummonerDefaultSpells');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.SummonerTalentsAndPoints', '\zlokomatic\phpLoL\amf\summoner\SummonerTalentsAndPoints');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.SummonerLevelAndPoints', '\zlokomatic\phpLoL\amf\summoner\SummonerLevelAndPoints');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.SummonerLevel', '\zlokomatic\phpLoL\amf\summoner\SummonerLevel');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.summoner.BasePublicSummonerDTO', '\zlokomatic\phpLoL\amf\summoner\BasePublicSummoner');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.RecentGames', '\zlokomatic\phpLoL\amf\statistics\RecentGames');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.PlayerGameStats', '\zlokomatic\phpLoL\amf\statistics\PlayerGameStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.FellowPlayerInfo', '\zlokomatic\phpLoL\amf\statistics\FellowPlayerInfo');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.RawStat', '\zlokomatic\phpLoL\amf\statistics\RawStat');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.PlayerLifetimeStats', '\zlokomatic\phpLoL\amf\statistics\PlayerLifetimeStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.PlayerStatSummaries', '\zlokomatic\phpLoL\amf\statistics\PlayerStatSummaries');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.PlayerStatSummary', '\zlokomatic\phpLoL\amf\statistics\PlayerStatSummary');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.SummaryAggStats', '\zlokomatic\phpLoL\amf\statistics\SummaryAggStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.SummaryAggStat', '\zlokomatic\phpLoL\amf\statistics\SummaryAggStat');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.LeaverPenaltyStats', '\zlokomatic\phpLoL\amf\statistics\LeaverPenaltyStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.PlayerStats', '\zlokomatic\phpLoL\amf\statistics\PlayerStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.TimeTrackedStat', '\zlokomatic\phpLoL\amf\statistics\TimeTrackedStat');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.AggregatedStats', '\zlokomatic\phpLoL\amf\statistics\AggregatedStats');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.AggregatedStat', '\zlokomatic\phpLoL\amf\statistics\AggregatedStat');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.statistics.AggregatedStatsKey', '\zlokomatic\phpLoL\amf\statistics\AggregatedStatsKey');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.platform.leagues.client.dto.SummonerLeaguesDTO', '\zlokomatic\phpLoL\amf\leagues\SummonerLeagues');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.leagues.pojo.LeagueListDTO', '\zlokomatic\phpLoL\amf\leagues\LeagueList');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.leagues.pojo.LeagueItemDTO', '\zlokomatic\phpLoL\amf\leagues\LeagueItem');
+        \SabreAMF_ClassMapper::registerClass('com.riotgames.leagues.pojo.MiniSeriesDTO', '\zlokomatic\phpLoL\amf\leagues\MiniSeries');
+
     }
     public function login($username, $password, $credentials, $partner = null)
     {
@@ -61,17 +98,17 @@ class LoLRPC extends RtmpClient
         $headers = array('DSSubtopic' => 'bc');
         $body = array('clientId' => 'bc-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'cn-' . $this->accountId);
         $body = array('clientId' => 'cn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         $headers = array('DSSubtopic' => 'gn-' . $this->accountId);
         $body = array('clientId' => 'gn-' . $this->accountId);
         
-        $result = $this->invoke("messagingDestination", 0, new \SabreAMF_TypedObject("", ""), "flex.messaging.messages.CommandMessage", $headers, $body);
+        $result = $this->invoke("messagingDestination", 0, null, "flex.messaging.messages.CommandMessage", $headers, $body);
         
         
         $this->loggedIn = true;
@@ -90,7 +127,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("summonerService", "getSummonerByName", $name);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 
@@ -98,7 +135,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("summonerService", "getAllPublicSummonerDataByAccount", $accountId);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 
@@ -116,7 +153,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("playerStatsService", "getRecentGames", $accountId);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 
@@ -124,7 +161,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("playerStatsService", "retrievePlayerStatsByAccountId", $accountId);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 
@@ -132,7 +169,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("playerStatsService", "getAggregatedStats", $accountId);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 
@@ -140,7 +177,7 @@ class LoLRPC extends RtmpClient
     {
         $result = $this->invoke("leaguesServiceProxy", "getAllLeaguesForPlayer", $summonerId);
         $result = $result['data']->getData();
-        $result = $result['body']->getAMFData();
+        $result = $result['body'];
         return $result;
     }
 

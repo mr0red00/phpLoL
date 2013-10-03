@@ -22,7 +22,7 @@ class LoLAuth
     public function login()
     {
         if(!ini_get('allow_url_fopen')) {
-            throw new LoginException("php.ini: allow_url_fopen not enabled");
+            throw new \Exception("php.ini: allow_url_fopen not enabled");
         }
         $data  = "payload=" . urlencode("user={$this->username},password={$this->password}");
         $opts = array(
@@ -40,10 +40,10 @@ class LoLAuth
         if(!$fp){
             preg_match("/HTTP\/1\.1 (?P<code>\d{3}).*/", $http_response_header[0], $matches);
            if($matches['code'] == 403){
-               throw new LoginException("Invalid username or password");
+               throw new \Exception("Invalid username or password");
            }
            else{
-               throw new LoginException("No Connection to login server");
+               throw new \Exception("No Connection to login server");
            }
         }
         $response = trim(stream_get_contents($fp));
@@ -56,7 +56,7 @@ class LoLAuth
             case 'LOGIN':
                 return array($data['user'] , $data['token']);
             default:
-                die("LOGIN ERROR");
+                throw \Exception("Unknown queue status {$data['status']}");
         }
     }
 

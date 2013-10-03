@@ -5,13 +5,16 @@ require_once 'vendor/autoload.php';
 use zlokomatic\phpLoL\LoLClient;
 
 $client = new LoLClient('Username', 'Password', 'NA' );
-var_dump($client->getAggregatedStats(12345, 'CLASSIC', 'CURRENT'));
 
-$summonerId = 12345;
-$leagues = $client->getAllLeaguesForPlayer($summonerId);
-$leagues = $leagues["summonerLeagues"];
+$summoner = $client->getSummonerByName("SummonerName");
+$publicSummonerData = $client->getAllPublicSummonerDataByAccount($summoner->getAcctId());
 
-foreach($leagues as $leagueArray){
-    $leagueArray = $leagueArray->getAmfData();
-    echo "League: " . $leagueArray['queue'] . " - " . $leagueArray['name'] . " - " . $leagueArray['tier'] . " - " . $leagueArray['requestorsRank'] . "\n";
-}
+$names = $client->getSummonerNames(array($summoner->getAcctId(), 123456));
+
+$games = $client->getRecentGames($summoner->getAcctId());
+
+$stats = $client->getPlayerStatsByAccountId($summoner->getAcctId());
+
+$aggStats = $client->getAggregatedStats($summoner->getAcctId(), 'CLASSIC', 'CURRENT');
+
+$leagues = $client->getAllLeaguesForPlayer($summoner->getSummonerId());
