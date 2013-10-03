@@ -417,8 +417,6 @@ class RTMPClient
 
             if($response['result'] == '_error'){
                 $data = $response['data']->getData();
-                var_dump($data);
-                die();
                 throw new \Exception($data->faultString);
             }
             
